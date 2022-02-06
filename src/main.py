@@ -1,15 +1,16 @@
 import guaji
-import Setwindow
+# import Setwindow
 
-Setwindow.setsize()
+# Setwindow.setsize()
 
-cishu = 10
+cishu = 100
 while cishu > 0:
+
     guaji.start()
     guaji.battle()
     guaji.end()
     cishu = cishu-1
-    print("剩余次数:",cishu)
+    print("剩余次数:", cishu)
 
 
 """
