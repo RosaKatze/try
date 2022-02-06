@@ -25,6 +25,8 @@ def start():
         win32api.mouse_event(win32con.MOUSEEVENTF_LEFTUP | win32con.MOUSEEVENTF_LEFTDOWN, 0, 0, 0, 0)  # 单击
         print("开始")
         time.sleep(2)
+    else:
+        check()
 
 
 def battle():
@@ -72,7 +74,6 @@ def end():
             time.sleep(random.uniform(0.2, 0.4))
 
 
-
 # 先确定点击的范围
 def suiji(xmin, ymin, xmax, ymax):
     # 在此范围内随机生成一个数
@@ -84,7 +85,9 @@ def suiji(xmin, ymin, xmax, ymax):
 
 # 后期要加一个兼容，万一弹出个悬赏框，要点掉
 def check():
-    is_zhunbei = pyautogui.pixelMatchesColor(413, 889, (58, 32, 33))  # 准备界面
+    print("点太快了，等1秒吧")
+    time.sleep(1)  # 现在遇到的情况是，end那边点太快了，还没来得及进准备界面呢，所以等1秒就行
+    start()  # 然后再start就行
 
     """
     battle = pyautogui.pixelMatchesColor(457, 165, (214, 196, 161))  # 确认是否在战斗界面
@@ -100,6 +103,7 @@ def check():
         sys.exit(0)
     """
 
+
 def test():
-    win32api.SetCursorPos((705,1060))  # 防检测
+    win32api.SetCursorPos((705, 1060))  # 防检测
     win32api.mouse_event(win32con.MOUSEEVENTF_LEFTUP | win32con.MOUSEEVENTF_LEFTDOWN, 0, 0, 0, 0)  # 单击
