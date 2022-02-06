@@ -1,4 +1,3 @@
-import sys
 import time
 import pyautogui
 import random
@@ -19,12 +18,13 @@ def start():
     is_start = pyautogui.pixelMatchesColor(startpointx, startponity,
                                            (startponitrgb_r, startponitrgb_g, startponitrgb_b))  # 开始界面
     win32api.SetCursorPos((startpointx, startponity))  # 将鼠标移动到开始按钮
+    time.sleep(0.5)
     if is_start:
         win32api.SetCursorPos(
             suiji(startregion_lefttop_x, startregion_lefttop_y, startregion_rightbot_x, startregion_rightbot_y))  # 防检测
         win32api.mouse_event(win32con.MOUSEEVENTF_LEFTUP | win32con.MOUSEEVENTF_LEFTDOWN, 0, 0, 0, 0)  # 单击
         print("开始")
-        time.sleep(0.2)
+        time.sleep(2)
 
 
 def battle():
@@ -32,9 +32,9 @@ def battle():
     # 战斗界面的坐标
     battlepointx, battleponity = Setting.battlepoint()
     # 战斗界面的rgb
-    battleponitrgb_r, battleponitrgb_g, battleponitrgb_b = Setting.startpointrgb()
+    battleponitrgb_r, battleponitrgb_g, battleponitrgb_b = Setting.battlepointrgb()
     # 战斗界面的范围
-    battleregion_lefttop_x, battleregion_lefttop_y, battleregion_rightbot_x, battleregion_rightbot_y = Setting.startregion()
+    battleregion_lefttop_x, battleregion_lefttop_y, battleregion_rightbot_x, battleregion_rightbot_y = Setting.battleregion()
 
     is_battle = pyautogui.pixelMatchesColor(battlepointx, battleponity,
                                             (battleponitrgb_r, battleponitrgb_g, battleponitrgb_b))  # 确认是否在战斗界面
@@ -45,6 +45,7 @@ def battle():
         print("正在战斗")
         time.sleep(Setting.time())  # 这个就是挂魂土的时间
         print("打完了")
+    time.sleep(2)
 
 
 def end():
@@ -63,12 +64,13 @@ def end():
         win32api.SetCursorPos(
             suiji(endregion_lefttop_x, endregion_lefttop_y, endregion_rightbot_x, endregion_rightbot_y))  # 防检测
         print("结算中")
-        for i in range(0, random.randint(7, 9)):  # 随机点击次数7到9次
+        time.sleep(1)
+        for i in range(0, random.randint(9, 15)):  # 随机点击次数7到9次
             win32api.SetCursorPos(
                 suiji(endregion_lefttop_x, endregion_lefttop_y, endregion_rightbot_x, endregion_rightbot_y))  # 防检测
             win32api.mouse_event(win32con.MOUSEEVENTF_LEFTUP | win32con.MOUSEEVENTF_LEFTDOWN, 0, 0, 0, 0)  # 单击
-            time.sleep(random.randint(0.2, 0.3))
-        time.sleep(0.5)  # 执行完成后暂停0.5秒
+            time.sleep(random.uniform(0.2, 0.4))
+
 
 
 # 先确定点击的范围
@@ -97,3 +99,7 @@ def check():
         print('出了问题，退出程序')
         sys.exit(0)
     """
+
+def test():
+    win32api.SetCursorPos((705,1060))  # 防检测
+    win32api.mouse_event(win32con.MOUSEEVENTF_LEFTUP | win32con.MOUSEEVENTF_LEFTDOWN, 0, 0, 0, 0)  # 单击
