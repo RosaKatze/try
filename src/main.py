@@ -6,8 +6,9 @@ import guaji
 Setwindow.setsize()
 """
 
+guaji.start()
 
-cishu = 1
+cishu = 0
 while cishu > 0:
 
     guaji.start()

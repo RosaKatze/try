@@ -4,32 +4,45 @@ import random
 import win32api
 import win32con
 import Setting
+import Image
 
 
 def start():
-    # 先从setting里取值
+    """
     # 开始按钮的坐标
     startpointx, startponity = Setting.startpoint()
     # 开始按钮的rgb
     startponitrgb_r, startponitrgb_g, startponitrgb_b = Setting.startpointrgb()
     # 开始的点击范围
-    startregion_lefttop_x, startregion_lefttop_y, startregion_rightbot_x, startregion_rightbot_y = Setting.startregion()
-
-    is_start = pyautogui.pixelMatchesColor(startpointx, startponity,
-                                           (startponitrgb_r, startponitrgb_g, startponitrgb_b))  # 开始界面
+    # startregion_lefttop_x, startregion_lefttop_y, startregion_rightbot_x, startregion_rightbot_y = Setting.startregion()
+    # is_start = pyautogui.pixelMatchesColor(startpointx, startponity,
+                                            (startponitrgb_r, startponitrgb_g, startponitrgb_b))  # 开始界面
     win32api.SetCursorPos((startpointx, startponity))  # 将鼠标移动到开始按钮
+    """
+    # 先从setting里取值
+    # 目标图片和模板图片
+    targetimage, templateimage = Setting.startimage()
+    # 截图范围
+    region = Setting.starshot()
+    # 点击范围
+    startregion_lefttop_x, startregion_lefttop_y, startregion_rightbot_x, startregion_rightbot_y = Setting.startclick()
+    # 尝试用图形匹配来做
+    Image.shot(region)  # 截图
+    is_start = Image.match(targetimage, templateimage)  # 开始界面
     time.sleep(0.5)
-    if is_start:
+    if is_start == 1:
         win32api.SetCursorPos(
             suiji(startregion_lefttop_x, startregion_lefttop_y, startregion_rightbot_x, startregion_rightbot_y))  # 防检测
         win32api.mouse_event(win32con.MOUSEEVENTF_LEFTUP | win32con.MOUSEEVENTF_LEFTDOWN, 0, 0, 0, 0)  # 单击
         print("开始")
-        time.sleep(2)
+        Image.delet()  # 进去了之后删掉刚刚的截图
+        time.sleep(2)  # 稍微等待一下载入时间
     else:
         check()
 
 
 def battle():
+    """
     # 先从setting里取值
     # 战斗界面的坐标
     battlepointx, battleponity = Setting.battlepoint()
@@ -38,10 +51,23 @@ def battle():
     # 战斗界面的范围
     battleregion_lefttop_x, battleregion_lefttop_y, battleregion_rightbot_x, battleregion_rightbot_y = Setting.battleregion()
 
+
     is_battle = pyautogui.pixelMatchesColor(battlepointx, battleponity,
                                             (battleponitrgb_r, battleponitrgb_g, battleponitrgb_b))  # 确认是否在战斗界面
     win32api.SetCursorPos((battlepointx, battleponity))
-    if is_battle:
+    """
+    # 先从setting里取值
+    # 目标图片和模板图片
+    targetimage, templateimage = Setting.battleimage()
+    # 截图范围
+    region = Setting.battleshot()
+    # 点击范围
+    battleregion_lefttop_x, battleregion_lefttop_y, battleregion_rightbot_x, battleregion_rightbot_y = Setting.battleclick()
+    # 尝试用图形匹配来做
+    Image.shot(region)  # 截图
+    is_battle = Image.match(targetimage, templateimage)  # 战斗界面
+    is_battle
+    if is_battle == 1:
         win32api.SetCursorPos(suiji(battleregion_lefttop_x, battleregion_lefttop_y, battleregion_rightbot_x,
                                     battleregion_rightbot_y))  # 鼠标移动，防检测
         print("正在战斗")
@@ -51,6 +77,7 @@ def battle():
 
 
 def end():
+    """
     # 先从setting里取值
     # 结束界面的坐标
     endpointx, endponity = Setting.endpoint()
@@ -62,7 +89,18 @@ def end():
     is_end = pyautogui.pixelMatchesColor(endpointx, endponity,
                                          (endponitrgb_r, endponitrgb_g, endponitrgb_b))  # 确认是否在结束界面
     win32api.SetCursorPos((endpointx, endponity))
-    if is_end:
+    """
+    # 先从setting里取值
+    # 目标图片和模板图片
+    targetimage, templateimage = Setting.endimage()
+    # 截图范围和是一样的
+    region = Setting.endshot()
+    # 点击范围
+    endregion_lefttop_x, endregion_lefttop_y, endregion_rightbot_x, endregion_rightbot_y = Setting.endclick()
+    # 尝试用图形匹配来做
+    Image.shot(region)  # 截图
+    is_end = Image.match(targetimage, templateimage)  # 结束界面
+    if is_end == 1:
         win32api.SetCursorPos(
             suiji(endregion_lefttop_x, endregion_lefttop_y, endregion_rightbot_x, endregion_rightbot_y))  # 防检测
         print("结算中")
