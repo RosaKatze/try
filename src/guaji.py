@@ -66,12 +66,13 @@ def end():
         win32api.SetCursorPos(
             suiji(endregion_lefttop_x, endregion_lefttop_y, endregion_rightbot_x, endregion_rightbot_y))  # 防检测
         print("结算中")
-        time.sleep(1)
-        for i in range(0, random.randint(9, 15)):  # 随机点击次数7到9次
+        time.sleep(1)  # 要等一会，跳出界面点才有用
+        print("我在狂点")
+        for i in range(0, random.randint(10, 14)):  # 随机点击次数10到14次
             win32api.SetCursorPos(
                 suiji(endregion_lefttop_x, endregion_lefttop_y, endregion_rightbot_x, endregion_rightbot_y))  # 防检测
             win32api.mouse_event(win32con.MOUSEEVENTF_LEFTUP | win32con.MOUSEEVENTF_LEFTDOWN, 0, 0, 0, 0)  # 单击
-            time.sleep(random.uniform(0.2, 0.4))
+            time.sleep(random.uniform(0.2, 0.4))  # 每次点击间隔随机
 
 
 # 先确定点击的范围

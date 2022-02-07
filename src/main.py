@@ -1,9 +1,13 @@
 import guaji
 # import Setwindow
 
-# Setwindow.setsize()
+"""
+用模拟器吧，官服的yys窗口调整大小会有bug
+Setwindow.setsize()
+"""
 
-cishu = 100
+
+cishu = 1
 while cishu > 0:
 
     guaji.start()
