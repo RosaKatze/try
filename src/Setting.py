@@ -1,3 +1,6 @@
+import win32gui
+
+
 def startimage():
     targetimage = r"G:\test\start.png"
     templateimage = r"G:\test\test.png"
@@ -18,58 +21,88 @@ def endimage():
 
 # 开始的截图范围
 def starshot():
-    leftop_x = 307
-    leftop_y = 0
-    rightbot_x = 404
-    rightbot_y = 22
+    titlename = "阴阳师 - MuMu模拟器"
+    hwnd = win32gui.FindWindow(0, titlename)
+    left, top, right, bot = win32gui.GetWindowRect(hwnd)
+    print(left, top, right, bot)
+    leftop_x = int((right - left) * 0.842105 + left)
+    leftop_y = int((bot - top) * 0.8090909 + top)
+    rightbot_x = int((right - left) * 0.949248 + left)
+    rightbot_y = int((bot - top) * 0.954545 + top)
     region = (leftop_x, leftop_y, rightbot_x, rightbot_y)
+    print(leftop_x, leftop_y, rightbot_x, rightbot_y)
     return region
 
 
 # 开始的点击范围
 def startclick():
-    leftop_x = 307
-    leftop_y = 0
-    rightbot_x = 404
-    rightbot_y = 22
+    titlename = "阴阳师 - MuMu模拟器"
+    hwnd = win32gui.FindWindow(0, titlename)
+    left, top, right, bot = win32gui.GetWindowRect(hwnd)
+    print(left, top, right, bot)
+    leftop_x = int((right - left) * 0.879699 + left)
+    leftop_y = int((bot - top) * 0.854545 + top)
+    rightbot_x = int((right - left) * 0.93233 + left)
+    rightbot_y = int((bot - top) * 0.8969697 + top)
+    print(leftop_x, leftop_y, rightbot_x, rightbot_y)
     return leftop_x, leftop_y, rightbot_x, rightbot_y
 
 
 # 战斗界面的截图范围
 def battleshot():
-    leftop_x = 307
-    leftop_y = 0
-    rightbot_x = 404
-    rightbot_y = 22
+    titlename = "阴阳师 - MuMu模拟器"
+    hwnd = win32gui.FindWindow(0, titlename)
+    left, top, right, bot = win32gui.GetWindowRect(hwnd)
+    print(left, top, right, bot)
+    percent = 1
+    leftop_x = (right - left) * percent + left
+    leftop_y = (bot - top) * percent + top
+    rightbot_x = (right - left) * percent + left
+    rightbot_y = (bot - top) * percent + top
     region = (leftop_x, leftop_y, rightbot_x, rightbot_y)
     return region
 
 
 # 战斗界面的点击范围
 def battleclick():
-    leftop_x = 1393
-    leftop_y = 746
-    rightbot_x = 1911
-    rightbot_y = 1026
+    titlename = "阴阳师 - MuMu模拟器"
+    hwnd = win32gui.FindWindow(0, titlename)
+    left, top, right, bot = win32gui.GetWindowRect(hwnd)
+    print(left, top, right, bot)
+    percent = 1
+    leftop_x = int((right - left) * 0.879699 + left)
+    leftop_y = int((bot - top) * 0.854545 + top)
+    rightbot_x = int((right - left) * 0.93233 + left)
+    rightbot_y = int((bot - top) * 0.8969697 + top)
     return leftop_x, leftop_y, rightbot_x, rightbot_y
 
 
 # 结束界面的截图范围
 def endshot():
-    leftop_x = 307
-    leftop_y = 0
-    rightbot_x = 404
-    rightbot_y = 22
+    titlename = "阴阳师 - MuMu模拟器"
+    hwnd = win32gui.FindWindow(0, titlename)
+    left, top, right, bot = win32gui.GetWindowRect(hwnd)
+    print(left, top, right, bot)
+    percent = 1
+    leftop_x = int((right - left) * 0.879699 + left)
+    leftop_y = int((bot - top) * 0.854545 + top)
+    rightbot_x = int((right - left) * 0.93233 + left)
+    rightbot_y = int((bot - top) * 0.8969697 + top)
     region = (leftop_x, leftop_y, rightbot_x, rightbot_y)
     return region
 
 
 # 结束界面的点击范围
 def endclick():
-    leftop_x = 1727
-    leftop_y = 935
-    rightbot_x = 1808
-    rightbot_y = 969
+    titlename = "阴阳师 - MuMu模拟器"
+    hwnd = win32gui.FindWindow(0, titlename)
+    left, top, right, bot = win32gui.GetWindowRect(hwnd)
+    print(left, top, right, bot)
+    percent = 1
+    leftop_x = int((right - left) * 0.879699 + left)
+    leftop_y = int((bot - top) * 0.854545 + top)
+    rightbot_x = int((right - left) * 0.93233 + left)
+    rightbot_y = int((bot - top) * 0.8969697 + top)
     return leftop_x, leftop_y, rightbot_x, rightbot_y
 
 

@@ -1,12 +1,14 @@
 import guaji
-# import Setwindow
+import Setwindow
+from Setting import startclick, starshot
 
 """
 用模拟器吧，官服的yys窗口调整大小会有bug
 Setwindow.setsize()
 """
 
-guaji.start()
+# Setwindow.setsize()
+starshot()
 
 cishu = 0
 while cishu > 0:
