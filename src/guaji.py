@@ -33,17 +33,16 @@ def battle():
     filename = Setting.battleimage()
     # 匹配一下
     is_battle = Image.match(filename)
-    is_battle
     if is_battle is not None:
         # 如果匹配到了，就直接把4个坐标拿过来
         battleregion_lefttop_x, battleregion_lefttop_y, battleregion_rightbot_x, battleregion_rightbot_y = Image.match(
             filename)
         # 移动到随机生成的坐标，防检测
         win32api.SetCursorPos(
-            suiji(battleregion_lefttop_x, battleregion_lefttop_y, battleregion_rightbot_x,battleregion_rightbot_y))
+            suiji(battleregion_lefttop_x, battleregion_lefttop_y, battleregion_rightbot_x, battleregion_rightbot_y))
         print("正在战斗")
         # 这个就是挂机的时间
-        time.sleep(Setting.time())
+        time.sleep(Setting.time)
         print("打完了")
         time.sleep(2)
 
@@ -64,15 +63,16 @@ def end():
         # 要等一会，跳出界面点才有用
         time.sleep(1)
         print("我在狂点")
-        # 随机点击次数10到14次
-        for i in range(0, random.randint(10, 14)):
+        # 随机点击次数5到10次
+        for i in range(0, random.randint(5, 10)):
+            print(i)
             # 移动到随机生成的坐标，防检测
             win32api.SetCursorPos(
                 suiji(endregion_lefttop_x, endregion_lefttop_y, endregion_rightbot_x, endregion_rightbot_y))
             # 单击
             win32api.mouse_event(win32con.MOUSEEVENTF_LEFTUP | win32con.MOUSEEVENTF_LEFTDOWN, 0, 0, 0, 0)
             # 每次点击间隔随机
-            time.sleep(random.uniform(0.2, 0.4))
+            time.sleep(random.uniform(0.3, 0.8))
 
 
 # 先确定点击的范围
@@ -88,7 +88,6 @@ def check():
     print("点太快了，等1秒吧")
     time.sleep(1)  # 现在遇到的情况是，end那边点太快了，还没来得及进准备界面呢，所以等1秒就行
     start()  # 然后再start就行
-
 
 
 def test():
