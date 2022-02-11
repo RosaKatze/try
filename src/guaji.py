@@ -1,5 +1,4 @@
 import time
-import pyautogui
 import random
 import win32api
 import win32con
@@ -18,7 +17,7 @@ def start():
     # is_start = pyautogui.pixelMatchesColor(startpointx, startponity,
                                             (startponitrgb_r, startponitrgb_g, startponitrgb_b))  # 开始界面
     win32api.SetCursorPos((startpointx, startponity))  # 将鼠标移动到开始按钮
-    """
+
     # 先从setting里取值
     # 目标图片和模板图片
     targetimage, templateimage = Setting.startimage()
@@ -29,16 +28,28 @@ def start():
     # 尝试用图形匹配来做
     Image.shot(region)  # 截图
     is_start = Image.match(targetimage, templateimage)  # 开始界面
+    """
+    filename = Setting.startimage()
+    is_start = Image.match(filename)
     time.sleep(0.5)
-    if is_start == 1:
+    if is_start is not None:
+        startregion_lefttop_x, startregion_lefttop_y, startregion_rightbot_x, startregion_rightbot_y = Image.match(
+            filename)
+        win32api.SetCursorPos(
+            suiji(startregion_lefttop_x, startregion_lefttop_y, startregion_rightbot_x, startregion_rightbot_y))  # 防检测
+        win32api.mouse_event(win32con.MOUSEEVENTF_LEFTUP | win32con.MOUSEEVENTF_LEFTDOWN, 0, 0, 0, 0)  # 单击
+        print("开始")
+        time.sleep(2)
+        """
         win32api.SetCursorPos(
             suiji(startregion_lefttop_x, startregion_lefttop_y, startregion_rightbot_x, startregion_rightbot_y))  # 防检测
         win32api.mouse_event(win32con.MOUSEEVENTF_LEFTUP | win32con.MOUSEEVENTF_LEFTDOWN, 0, 0, 0, 0)  # 单击
         print("开始")
         Image.delet()  # 进去了之后删掉刚刚的截图
-        time.sleep(2)  # 稍微等待一下载入时间
+          # 稍微等待一下载入时间
+        """
     else:
-        check()
+        print("未匹配到")
 
 
 def battle():
@@ -55,7 +66,6 @@ def battle():
     is_battle = pyautogui.pixelMatchesColor(battlepointx, battleponity,
                                             (battleponitrgb_r, battleponitrgb_g, battleponitrgb_b))  # 确认是否在战斗界面
     win32api.SetCursorPos((battlepointx, battleponity))
-    """
     # 先从setting里取值
     # 目标图片和模板图片
     targetimage, templateimage = Setting.battleimage()
@@ -65,15 +75,21 @@ def battle():
     battleregion_lefttop_x, battleregion_lefttop_y, battleregion_rightbot_x, battleregion_rightbot_y = Setting.battleclick()
     # 尝试用图形匹配来做
     Image.shot(region)  # 截图
-    is_battle = Image.match(targetimage, templateimage)  # 战斗界面
+    """
+    filename = Setting.battleimage()
+    is_battle = Image.match(filename)  # 战斗界面
     is_battle
-    if is_battle == 1:
-        win32api.SetCursorPos(suiji(battleregion_lefttop_x, battleregion_lefttop_y, battleregion_rightbot_x,
-                                    battleregion_rightbot_y))  # 鼠标移动，防检测
+    if is_battle is not None:
+        # 点击范围
+        battleregion_lefttop_x, battleregion_lefttop_y, battleregion_rightbot_x, battleregion_rightbot_y = Image.match(
+            filename)
+        # 鼠标移动，防检测
+        win32api.SetCursorPos(
+            suiji(battleregion_lefttop_x, battleregion_lefttop_y, battleregion_rightbot_x,battleregion_rightbot_y))
         print("正在战斗")
         time.sleep(Setting.time())  # 这个就是挂魂土的时间
         print("打完了")
-    time.sleep(2)
+        time.sleep(2)
 
 
 def end():
@@ -89,7 +105,7 @@ def end():
     is_end = pyautogui.pixelMatchesColor(endpointx, endponity,
                                          (endponitrgb_r, endponitrgb_g, endponitrgb_b))  # 确认是否在结束界面
     win32api.SetCursorPos((endpointx, endponity))
-    """
+
     # 先从setting里取值
     # 目标图片和模板图片
     targetimage, templateimage = Setting.endimage()
@@ -99,10 +115,16 @@ def end():
     endregion_lefttop_x, endregion_lefttop_y, endregion_rightbot_x, endregion_rightbot_y = Setting.endclick()
     # 尝试用图形匹配来做
     Image.shot(region)  # 截图
-    is_end = Image.match(targetimage, templateimage)  # 结束界面
-    if is_end == 1:
+    """
+    filename = Setting.endimage()
+    is_end = Image.match(filename)  # 结束界面
+    if is_end is not None:
+        # 点击范围
+        endregion_lefttop_x, endregion_lefttop_y, endregion_rightbot_x, endregion_rightbot_y = Image.match(
+            filename)
+        # 防检测
         win32api.SetCursorPos(
-            suiji(endregion_lefttop_x, endregion_lefttop_y, endregion_rightbot_x, endregion_rightbot_y))  # 防检测
+            suiji(endregion_lefttop_x, endregion_lefttop_y, endregion_rightbot_x, endregion_rightbot_y))
         print("结算中")
         time.sleep(1)  # 要等一会，跳出界面点才有用
         print("我在狂点")
@@ -118,7 +140,6 @@ def suiji(xmin, ymin, xmax, ymax):
     # 在此范围内随机生成一个数
     x = random.randint(xmin, xmax)
     y = random.randint(ymin, ymax)
-
     return x, y
 
 

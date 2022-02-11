@@ -2,23 +2,26 @@ import win32gui
 
 
 def startimage():
-    targetimage = r"G:\test\start.png"
-    templateimage = r"G:\test\test.png"
-    return targetimage, templateimage
+    templateimage = r"G:\test\star.png"
+    return templateimage
 
 
 def battleimage():
-    targetimage = r"G:\test\battle.png"
-    templateimage = r"G:\test\test.png"
-    return targetimage, templateimage
+    templateimage = r"G:\test\battle.png"
+    return templateimage
 
 
 def endimage():
-    targetimage = r"G:\test\end.png"
-    templateimage = r"G:\test\test.png"
-    return targetimage, templateimage
+    templateimage = r"G:\test\end.png"
+    return templateimage
 
 
+# 挂一次魂土的时间
+def time():
+    return 3
+
+
+"""
 # 开始的截图范围
 def starshot():
     titlename = "阴阳师 - MuMu模拟器"
@@ -47,7 +50,6 @@ def startclick():
     print(leftop_x, leftop_y, rightbot_x, rightbot_y)
     return leftop_x, leftop_y, rightbot_x, rightbot_y
 
-
 # 战斗界面的截图范围
 def battleshot():
     titlename = "阴阳师 - MuMu模拟器"
@@ -62,7 +64,6 @@ def battleshot():
     region = (leftop_x, leftop_y, rightbot_x, rightbot_y)
     return region
 
-
 # 战斗界面的点击范围
 def battleclick():
     titlename = "阴阳师 - MuMu模拟器"
@@ -75,7 +76,6 @@ def battleclick():
     rightbot_x = int((right - left) * 0.93233 + left)
     rightbot_y = int((bot - top) * 0.8969697 + top)
     return leftop_x, leftop_y, rightbot_x, rightbot_y
-
 
 # 结束界面的截图范围
 def endshot():
@@ -91,7 +91,6 @@ def endshot():
     region = (leftop_x, leftop_y, rightbot_x, rightbot_y)
     return region
 
-
 # 结束界面的点击范围
 def endclick():
     titlename = "阴阳师 - MuMu模拟器"
@@ -104,12 +103,7 @@ def endclick():
     rightbot_x = int((right - left) * 0.93233 + left)
     rightbot_y = int((bot - top) * 0.8969697 + top)
     return leftop_x, leftop_y, rightbot_x, rightbot_y
-
-
-# 挂一次魂土的时间
-def time():
-    return 3
-
+"""
 
 """
 # 开始按钮的坐标

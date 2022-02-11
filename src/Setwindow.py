@@ -7,11 +7,9 @@ def setsize():
     classname = ""
     hwnd = win32gui.FindWindow(0, titlename)
 
-
     # 获取句柄窗口的大小信息
     left, top, right, bot = win32gui.GetWindowRect(hwnd)
     print(left, top, right, bot)
-
 
     # 移动窗口到目标位置
     # win32gui.MoveWindow(hwnd, 961, 0, 966, 526, 0)

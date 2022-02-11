@@ -1,9 +1,30 @@
-# opencv模板匹配----单目标匹配
 import os
 import cv2
+import pyautogui
 from PIL import ImageGrab
+import cv2
 
 
+def match(filename):
+    location = pyautogui.locateOnScreen(filename, confidence=0.9)
+    if location is not None:
+        xmin = location.left
+        ymin = location.top
+        xmax = location.left + location.width
+        ymax = location.top + location.height
+        return xmin, ymin, xmax, ymax
+    else:
+        return None
+
+    # print(center)
+    # pyautogui.moveTo(center)
+    # pyautogui.click(center, clicks=2, interval=0.1, button='left')
+
+
+# file = r"G:\test\test.png"
+# match(file)
+
+"""
 # 对指定区域进行截图，并保存
 def shot(region):
     img = ImageGrab.grab(region)
@@ -57,7 +78,4 @@ def match(targetimage, templateimage):
         return 0
 
 
-# region = (457, 588, 828, 670)
-# shot(region)
-# match()
-# delet()
+"""
