@@ -23,9 +23,10 @@ def start():
         win32api.mouse_event(win32con.MOUSEEVENTF_LEFTUP | win32con.MOUSEEVENTF_LEFTDOWN, 0, 0, 0, 0)
         print("开始")
         # 等待加载
-        time.sleep(2)
+        time.sleep(2.5)
     else:
         print("未匹配到")
+        endcheck()
 
 
 def battle():
@@ -44,7 +45,7 @@ def battle():
         # 这个就是挂机的时间
         time.sleep(Setting.time)
         print("打完了")
-        time.sleep(2)
+        time.sleep(2.5)
 
 
 def end():
@@ -64,7 +65,7 @@ def end():
         time.sleep(1)
         print("我在狂点")
         # 随机点击次数5到10次
-        for i in range(0, random.randint(5, 10)):
+        for i in range(0, random.randint(6, 8)):
             print(i)
             # 移动到随机生成的坐标，防检测
             win32api.SetCursorPos(
@@ -72,7 +73,34 @@ def end():
             # 单击
             win32api.mouse_event(win32con.MOUSEEVENTF_LEFTUP | win32con.MOUSEEVENTF_LEFTDOWN, 0, 0, 0, 0)
             # 每次点击间隔随机
-            time.sleep(random.uniform(0.3, 0.8))
+            time.sleep(random.uniform(0.5, 0.8))
+
+
+
+def endcheck():
+    # 结束界面的图片
+    filename = Setting.endimgcheck()
+    # 匹配一下
+    is_end = Image.match(filename)
+    if is_end is not None:
+        # 如果匹配到了，就直接把4个坐标拿过来
+        endregion_lefttop_x, endregion_lefttop_y, endregion_rightbot_x, endregion_rightbot_y = Image.match(
+            filename)
+        # 移动到随机生成的坐标，防检测
+        win32api.SetCursorPos(
+            suiji(endregion_lefttop_x, endregion_lefttop_y, endregion_rightbot_x, endregion_rightbot_y))
+        print("结算中")
+        print("我在狂点")
+        # 随机点击次数5到10次
+        for i in range(0, random.randint(1, 3)):
+            print(i)
+            # 移动到随机生成的坐标，防检测
+            win32api.SetCursorPos(
+                suiji(endregion_lefttop_x, endregion_lefttop_y, endregion_rightbot_x, endregion_rightbot_y))
+            # 单击
+            win32api.mouse_event(win32con.MOUSEEVENTF_LEFTUP | win32con.MOUSEEVENTF_LEFTDOWN, 0, 0, 0, 0)
+            # 每次点击间隔随机
+            time.sleep(random.uniform(0.2, 0.4))
 
 
 # 先确定点击的范围
