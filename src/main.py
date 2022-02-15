@@ -8,3 +8,6 @@ while cishu > 0:
     guaji.end()
     cishu = cishu - 1
     print("剩余次数:", cishu)
+
+
+# guaji.end()
